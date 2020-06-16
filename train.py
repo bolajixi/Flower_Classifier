@@ -16,7 +16,7 @@ def parse_args():
     parser.add_argument('--data_dir', type=str, help='File path to dataset')
     parser.add_argument('--save_dir', type=str, help='Save trained model checkpoint', default="ImageClassifier/checkpoint.pth")
     parser.add_argument('--arch', type=str, help='Model Architecture', default='densenet121', choices=['densenet121', 'vgg13'])
-    parser.add_argument('--learning_rate', type=int, help='Learning rate', default=0.001)
+    parser.add_argument('--learning_rate', type=float, help='Learning rate', default=0.001)
     parser.add_argument('--hidden_units', type=int, help='Number of hidden units', default=512)
     parser.add_argument('--epochs', type=int, help='Number of epochs', default=9)
     parser.add_argument('--gpu', type=str, help='Make use of GPU if available (true|false), (yes|no), (y|n), (1|0)')
@@ -36,6 +36,7 @@ def build_network(model, h_layers, model_choice, dropout=0.3):
 
     # Building Network
     input_size = model.classifier.in_features
+    input_size_vgg = model.classifier[0].in_features
 
     # freeze feature parameters
     for param in model.parameters():
@@ -51,7 +52,7 @@ def build_network(model, h_layers, model_choice, dropout=0.3):
         ]))
     elif model_choice == 'vgg13':
         classifier = nn.Sequential(OrderedDict([
-            ('fc1', nn.Linear(input_size, 1024)),
+            ('fc1', nn.Linear(input_size_vgg, 1024)),
             ('drop', nn.Dropout(p=0.5)),
             ('relu', nn.ReLU()),
             ('fc2', nn.Linear(1024, 102)),

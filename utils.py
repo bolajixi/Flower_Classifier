@@ -12,8 +12,8 @@ def load_cat_to_name(filename):
 
 def parse_gpu_arg(v):
     '''
-        This function converts commanline argument to boolean
-        '''
+        This function converts commandline argument to boolean
+    '''
     if isinstance(v, bool):
         return v
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
