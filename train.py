@@ -1,13 +1,12 @@
-import torch
-from torch import nn, optim
-import torch.nn.functional as F
-from torchvision import datasets, transforms, models
+import argparse
+import time
 from collections import OrderedDict
 
-import time
-
-import argparse
-from utils import save_checkpoint, parse_gpu_arg
+import torch
+import torch.nn.functional as F
+from torch import nn, optim
+from torchvision import datasets, models, transforms
+from utils import parse_gpu_arg, save_checkpoint
 
 
 def parse_args():
