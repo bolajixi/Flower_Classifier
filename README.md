@@ -1,6 +1,6 @@
 # Image Classifier
 
-This is a command line application that predicts and classifies images. It is built using the `PyTorch` library.
+This is a command line application that predicts and classifies various images of flowers with an accuracy of 85.5%. It is built using the `PyTorch` library.
 
 # Installation
 
